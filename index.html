@@ -25,7 +25,7 @@ const client = mqtt.connect(
 
 client.on('connect', function(){
 
-  client.subscribe('esp8266/den1/status');
+  client.subscribe('esp8266/66316d/status');
 
 });
 
@@ -39,7 +39,7 @@ client.on('message', function(topic,message){
 function batDen(){
 
  client.publish(
- 'esp8266/den1/cmd',
+ 'esp8266/66316d/cmd',
  'ON'
  );
 
