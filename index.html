@@ -1,1 +1,60 @@
 <h1>Hello World</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Điều khiển đèn</title>
+
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+
+<body>
+
+<h2>Điều khiển đèn ESP8266</h2>
+
+<button onclick="batDen()">Bật đèn</button>
+<button onclick="tatDen()">Tắt đèn</button>
+
+<p>Trạng thái: <span id="tt">---</span></p>
+
+<script>
+
+const client = mqtt.connect(
+'wss://broker.hivemq.com:8884/mqtt'
+);
+
+client.on('connect', function(){
+
+  client.subscribe('esp8266/den1/status');
+
+});
+
+client.on('message', function(topic,message){
+
+ document.getElementById("tt").innerHTML=
+ message.toString();
+
+});
+
+function batDen(){
+
+ client.publish(
+ 'esp8266/den1/cmd',
+ 'ON'
+ );
+
+}
+
+function tatDen(){
+
+ client.publish(
+ 'esp8266/den1/cmd',
+ 'OFF'
+ );
+
+}
+
+</script>
+
+</body>
+</html>
