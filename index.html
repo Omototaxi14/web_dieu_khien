@@ -40,7 +40,7 @@ function batDen(){
 
  client.publish(
  'esp8266/66316d/cmd',
- 'ON'
+ '{"outm1f2":1}'
  );
 
 }
@@ -48,8 +48,8 @@ function batDen(){
 function tatDen(){
 
  client.publish(
- 'esp8266/den1/cmd',
- 'OFF'
+ 'esp8266/66316d/cmd',
+ '{"outm1f2":0}'
  );
 
 }
